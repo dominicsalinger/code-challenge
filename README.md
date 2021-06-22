@@ -39,19 +39,19 @@ The goal of this code sample is to help us identify what you consider production
 The aspects of your code we will assess include:
 
 * **Architecture**: How clean is the separation between the front-end and the back-end? Is the architecture simple and elegant while solving technical problems?
-* **Clarity**: Does the README clearly and concisely explains the problem and solution? Are technical tradeoffs explained?
+* **Clarity**: Does the README clearly and concisely explain the problem and solution? Are technical tradeoffs explained?
 * **Correctness**: Does the application do what was asked? If there is anything missing, does the README explain why it is missing?
-* **Code quality**: Is the code simple, easy to understand, and maintainable?  Are there any code smells or other red flags? Does object-oriented code follows principles such as the single responsibility principle? Is the coding style consistent with the language's guidelines? Is it consistent throughout the codebase?
+* **Code quality**: Is the code simple, easy to understand, and maintainable?  Are there any code smells or other red flags? Does object-oriented code follow principles such as the single responsibility principle? Is the coding style consistent with the language's guidelines? Is it consistent throughout the codebase?
 * **Security**: Are there any obvious vulnerabilities?
 * **Performance**: Are there any obvious performance issues?
 * **UX**: Is the interface understandable and pleasing to use? Is it UI mobile-responsive? Is the API intuitive?
-* **Technical choices**: Do choices of libraries, databases, architecture etc. seem appropriate for the chosen application?
+* **Technical choices**: Do choices of libraries, databases, architecture, etc. seem appropriate for the chosen application?
 
 ## Coding challenge
 
 If you don't have existing code to share, you can work on the full-stack coding challenge described below. Flat-rate compensation will be provided if you choose this option.
 
-Please organize, design, document and deploy your code as if it were going into production, then send us a link to the hosted repository.
+Please organize, design, document, and deploy your code as if it were going into production, then send us a link to the hosted repository.
 
 ### Functional spec
 
@@ -68,7 +68,7 @@ Prototype one of the following full-stack projects:
 
 ### Technical spec
 
-The architecture will be split between a back-end and a web front-end, for instance providing a RESTful API consumed by a client application. Feel free to use any preferred technologies provided that the general client/service architecture is respected.
+The architecture will be split between a back-end and a web front-end, for instance providing a REST API consumed by a client application. Feel free to use any preferred technologies provided that the general client/service architecture is respected.
 
 Our standard stack is Django/React.
 
