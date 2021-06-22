@@ -1,14 +1,11 @@
 
-CovalentCreative Coding Challenge
----
+# CovalentCreative Coding Challenge
 
 Thank you so much for your interest in being part of the CovalentCreative engineering team!
 
 This coding challenge is optional. If you have existing code that you're proud of (and can share with us), you can use it in lieu of this challenge (see the "Using existing code" section below).
 
 Compensation for this challenge is only provided if you are writing new code.
-
----
 
 ## Using existing code
 
@@ -21,7 +18,6 @@ If you have existing code, please follow the following guidelines:
   * Is leveraging web technologies.
   * Is deployed and hosted somewhere.
 
----
 
 ## Writing a project README
 
@@ -33,8 +29,6 @@ Regardless of whether it's your own code, or our coding challenge, write your RE
 * The reasoning behind your technical choices, including architectural decisions.
 * Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project.
 * Link to the hosted application (where applicable).
-
----
 
 ## How we review your code
 
@@ -52,8 +46,6 @@ The aspects of your code we will assess include:
 * **Performance**: Are there any obvious performance issues?
 * **UX**: Is the interface understandable and pleasing to use? Is it UI mobile-responsive? Is the API intuitive?
 * **Technical choices**: Do choices of libraries, databases, architecture etc. seem appropriate for the chosen application?
-
----
 
 ## Coding challenge
 
