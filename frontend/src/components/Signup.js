@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { signUp } from '../Requests'
 
+/**
+ * This component renders the sign up form
+ * @param onLoggedIn - parent callback to handle logins
+ */
 export default function Signup({ onLoggedIn }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

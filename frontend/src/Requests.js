@@ -1,6 +1,11 @@
+/**
+ * This class contains all the api calls to the django server
+ */
+
 import axios from 'axios'
 
 const baseUrl = 'https://codechallenge.net'
+// The current api is deployed to codechallenge.net. For local development, comment baseUrl above and uncomment it below
 // const baseUrl = 'http://127.0.0.1:8000'
 
 const createProduct = async (name, description, price, quantity) => {

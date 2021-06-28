@@ -133,8 +133,8 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+# Only allowing all for prototyping
 ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['shopfront-dev.us-west-2.elasticbeanstalk.com']
 
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'shopfront.utils.jwt_response_handler',

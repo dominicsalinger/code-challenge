@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { getToken } from '../Requests'
 
+/**
+ * This component renders the login form
+ * @param onLoggedIn - parent callback to handle logins
+ */
 export default function Login({ onLoggedIn }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   let history = useHistory()
 
+  // api call to receive an auth token, and save it to local storage
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {

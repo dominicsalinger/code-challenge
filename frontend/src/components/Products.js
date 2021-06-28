@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Alert, Form } from 'react-bootstrap'
 import {
   addProductToCart,
@@ -9,6 +8,10 @@ import {
 } from '../Requests'
 import ProductCard from './ProductCard'
 
+/**
+ * Parent component for the products/shopping page.
+ * This is responsible for grabbing initial products from the api and searching for specific items.
+ */
 export default function Products() {
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])

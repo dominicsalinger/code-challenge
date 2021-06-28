@@ -1,87 +1,61 @@
+# Visit the e-commerce site [here](https://main.d5qpnpxcitkvx.amplifyapp.com/)
 
-# CovalentCreative Coding Challenge
+## Problem and Solution
 
-Thank you so much for your interest in being part of the CovalentCreative engineering team!
+**Basic e-commerce flow:**
+This e-commerce flow is implemented by splitting the architecture between a React client application and a Django REST(ish) API.
 
-This coding challenge is optional. If you have existing code that you're proud of (and can share with us), you can use it in lieu of this challenge (see the "Using existing code" section below).
+The React client was created from the boilerplate [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) and then customized with the components found in `/frontend/src/components`
 
-Compensation for this challenge is only provided if you are writing new code.
+The Django API contains models to track product and cart data. The API uses json web tokens
+for authentication to allow for a stateless API. Any React client can communicate with the
+server so long as it passes in a well-formed authentication header (see `/frontend/src/Requests.js` for examples)
 
-## Using existing code
+## Deployment
 
-If you have existing code, please follow the following guidelines:
+The Django API is live at [codechallenge.net](https://codechallenge.net/api/products)
+It is hosted via AWS Elastic Beanstalk and has HTTPS configured with Route53 and Amazon Certificate Manager.
 
-* Include a link to the hosted repository (e.g. Github, Bitbucket).
-* The repo should include a README that follows the [principles described below](#readme) In particular, please make sure to include high-level explanation about what the code is doing.
-* Ideally, the code you're providing:
-  * Has been written by you alone. If not, please tell us which part you wrote and are most proud of in the README.
-  * Is leveraging web technologies.
-  * Is deployed and hosted somewhere.
+The React frontend is live at [here](https://main.d5qpnpxcitkvx.amplifyapp.com/)
+It is hosted via AWS Amplify
 
+## Local Development
 
-## Writing a project README
+### Django
 
-Regardless of whether it's your own code, or our coding challenge, write your README as if it was for a production service. Include the following items:
+1. `cd backend/shopfront` to get to the django base project
+2. Activate your virtual environment
+3. `pip install -r requirements.txt` to install dependencies
+4. `python manage.py runserver` to start the server on `localhost:8000`
+5. You may be prompted that you have unapplied migrations. If so you can run `python manage.py makemigrations && python manage.py migrate`
+6. After running the server, visit `localhost:8000/api/products` to see if the app is up and running
 
-* Description of the problem and solution.
-* Whether the solution focuses on back-end, front-end, or if it's full-stack.
-* Any relevant installation or demo instructions, including usage examples.
-* The reasoning behind your technical choices, including architectural decisions.
-* Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project.
-* Link to the hosted application (where applicable).
+### React
 
-## How we review your code
+1. `cd frontend` to get to the React project
+2. `npm install` to install dependencies
+3. `npm run start` to run the client on localhost:3000
 
-Your application will be reviewed by two engineers.
+## Technical/Architectural Choices
 
-The goal of this code sample is to help us identify what you consider production-ready code. You should consider this code as it were ready for final review with your colleague, i.e. this would be the last step before deploying to production.
+### Database Schema
 
-The aspects of your code we will assess include:
+I get away with only two tables in this project because it is extremely feature-light. To allow for more functionality (item returns, sales analytics, etc.) there would need to be a table that contains a row for each product that has a unique id that can be associated with sales. Currently, the product.quantity field can be modified to handle purchases, but I think a better approach would be to have a product_items table to track each individual product sold.
 
-* **Architecture**: How clean is the separation between the front-end and the back-end? Is the architecture simple and elegant while solving technical problems?
-* **Clarity**: Does the README clearly and concisely explain the problem and solution? Are technical tradeoffs explained?
-* **Correctness**: Does the application do what was asked? If there is anything missing, does the README explain why it is missing?
-* **Code quality**: Is the code simple, easy to understand, and maintainable?  Are there any code smells or other red flags? Does object-oriented code follow principles such as the single responsibility principle? Is the coding style consistent with the language's guidelines? Is it consistent throughout the codebase?
-* **Security**: Are there any obvious vulnerabilities?
-* **Performance**: Are there any obvious performance issues?
-* **UX**: Is the interface understandable and pleasing to use? Is it UI mobile-responsive? Is the API intuitive?
-* **Technical choices**: Do choices of libraries, databases, architecture, etc. seem appropriate for the chosen application?
+### Bootstrap
 
-## Coding challenge
+I use bootstrap for the frontend only because it makes prototyping very quick. In a larger project I would use more custom css with the styled-components npm package.
 
-If you don't have existing code to share, you can work on the full-stack coding challenge described below. Flat-rate compensation will be provided if you choose this option.
+### Deployment
 
-Please organize, design, document, and deploy your code as if it were going into production, then send us a link to the hosted repository.
+I investigated several deployment options including [pythonanywhere](https://www.pythonanywhere.com/) for django and [Nextjs/Vercel](https://vercel.com/home?utm_source=next-site&utm_medium=banner&utm_campaign=next-website) for react. Ultimately I decided on AWS because their services work well with each other (Route53 -> Amazon Credential Manager -> Elastic Beanstalk for https)
 
-### Functional spec
+## Post MVP (what I learned)
 
-Prototype one of the following full-stack projects:
+### Form Validation and Errors
 
-1. **Basic e-commerce flow:** Create a basic inventory management backend for product data entry. Allow end users to browse the product list, add products to a cart, and "check out" (note: the cart doesn't actually have to process any payments - you can stub this functionality).
+Just a couple of custom forms in React can get unwieldy. Post-MVP I would include a react form builder like [Formik](https://formik.org/) to streamline and cleanup forms and form errors.
 
-2. **Food truck map:** Create a service that tells the user what types of food trucks are closest to their current location, visualized on a map ([food truck data set](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat)). Feel free to use this basic map+geolocation concept with a different data set.
+### Normalize REST routes and responses
 
-3. **Real-time notification dispatcher**. Create a socket-powered application that allows a centralized server to push real-time notifications to any clients that are visiting a certain URL. 
-
-4. **Downtime detector**. Create a service that monitors URLs for downtime (any non-200 response). Graph downtime using a charting library and give the user the ability to subscribe to email or text message alerts ([Twilio API](https://www.twilio.com/docs/api/rest))
-
-
-### Technical spec
-
-The architecture will be split between a back-end and a web front-end, for instance providing a REST API consumed by a client application. Feel free to use any preferred technologies provided that the general client/service architecture is respected.
-
-Our standard stack is Django/React.
-
-### UI/UX
-
-The UI/UX is totally up to you. If you want, get creative and add additional features the user might find useful!
-
-### Back-end
-
-You are free to use any web framework. If you choose to use a framework that results in boilerplate code in the repository, please detail in your README which code was written by you (as opposed to generated code).
-
-### Front-end
-
-The front-end should ideally be a single page app with a single `index.html` linking to external JS/CSS/etc. You may take this opportunity to demonstrate your React and HTML/CSS knowledge.
-
-
+A side effect of prototyping the frontend and backend at the same time is that I didn't stick to good naming conventions for the API routes or their responses. I would normalize the routes to adhere to RESTful conventions and standardize the responses on success and error.

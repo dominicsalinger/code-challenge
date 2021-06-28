@@ -3,6 +3,12 @@ import { Card, Button } from 'react-bootstrap'
 import { FaCartPlus } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
 
+/**
+ * This component renders a product in the shopping view.
+ *
+ * @param product - the product to display
+ * @param cart - the contents of the cart, render changes if the product is already in the cart
+ */
 export default function ProductCard({ product, cart, handleAddProduct }) {
   return (
     <Card key={product.id} style={{ width: '18rem', margin: '1rem' }}>

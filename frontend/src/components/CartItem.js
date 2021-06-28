@@ -3,6 +3,11 @@ import { Card, Button } from 'react-bootstrap'
 import { MdRemoveShoppingCart } from 'react-icons/md'
 import { IconContext } from 'react-icons'
 
+/**
+ * This component is a partial view for rendering a product in the user's cart
+ * @param product - the product to render the card for
+ * @param removeCallback - parent callback to update the cart when an item is removed
+ */
 export default function CartItem({ product, removeCallback }) {
   return (
     <Card key={product.id} style={{ width: '18rem', margin: '1rem' }}>

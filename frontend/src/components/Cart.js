@@ -8,6 +8,10 @@ import { TiArrowForward } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
 import { IconContext } from 'react-icons'
 
+/**
+ * This component is responsible for rendering the user's cart
+ * and making API calls to remove items and check out.
+ */
 export default function Cart() {
   let history = useHistory()
   const [cart, setCart] = useState([])
@@ -16,6 +20,7 @@ export default function Cart() {
   const [alertText, setAlertText] = useState('')
   const [modalShow, setModalShow] = useState(false)
 
+  // Get user and cart data when first loading this component
   useEffect(() => {
     let isMounted = true
     async function getUser() {
@@ -45,6 +50,7 @@ export default function Cart() {
     }
   }, [])
 
+  // api call to remove an item from the user's cart
   const removeItem = async (productId) => {
     try {
       await removeItemFromCart(productId)
@@ -59,6 +65,7 @@ export default function Cart() {
     }
   }
 
+  // utility function to sum the prices of the user's cart
   const getCartTotal = () => {
     let total = 0
     for (const cartItem of cart) {
@@ -67,6 +74,7 @@ export default function Cart() {
     return total.toFixed(2)
   }
 
+  // api call to checkout items. redirect to the main shopping page since the cart will be empty
   const checkoutCart = async () => {
     const productIds = cart.map((product) => product.id)
     await checkout(productIds)

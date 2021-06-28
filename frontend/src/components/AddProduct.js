@@ -2,6 +2,12 @@ import React, { useState } from 'react'
 import { Form, Row, Col, Button, InputGroup } from 'react-bootstrap'
 import { createProduct } from '../Requests'
 
+/**
+ * This is responsible for rendering the Add Product form in the My Shop route.
+ * On success, this component executes a parent callback to add the new product to the Inventory component
+ *
+ * @param addProductCallback - Parent callback to update Inventory
+ */
 export default function AddProduct({ addProductCallback }) {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -9,6 +15,7 @@ export default function AddProduct({ addProductCallback }) {
   const [quantity, setQuantity] = useState(0)
   const [error, setError] = useState('')
 
+  // POST the new product to the server and add it to the inventory via a parent callback
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {

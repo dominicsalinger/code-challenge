@@ -17,12 +17,18 @@ def current_user(request):
     return Response(serializer.data)
     
 def get_products(request):
+    """
+    This view has no auth to allow un-authed visitors to see products
+    """
     products = Product.objects.filter(quantity__gte=1).order_by('-id')[:50]
     serializer = ProductListSerializer(products)
     return JsonResponse(serializer.data, safe=False)
 
 @api_view(['POST'])
 def create_product(request):
+    """
+    Create a new product based on request POST params
+    """
     user = request.user
     if user.is_authenticated:
         try:
@@ -38,6 +44,9 @@ def create_product(request):
 
 @api_view(['GET'])
 def my_shop_data(request):
+    """
+    Get the authed user's shop information - list of all their products
+    """
     user = request.user
     if user.is_authenticated:
         try:
@@ -50,6 +59,9 @@ def my_shop_data(request):
 
 @api_view(['GET'])
 def my_cart_products(request):
+    """
+    Get the authed user's cart items
+    """
     user = request.user
     if user.is_authenticated:
         try:
@@ -62,6 +74,9 @@ def my_cart_products(request):
 
 @api_view(['POST'])
 def add_product_to_cart(request):
+    """
+    Add the POSTed product to the authed users's cart
+    """
     user = request.user
     if user.is_authenticated:
         try:
@@ -79,6 +94,9 @@ def add_product_to_cart(request):
     return JsonResponse({"error": "Please login"}, status=401)
 
 def search_products(request):
+    """
+    Search products for the requested string
+    """
     try:
         search = request.GET['search']
         results = Product.objects.filter(name__icontains=search, quantity__gte=1)
@@ -89,6 +107,10 @@ def search_products(request):
 
 @api_view(['POST'])
 def update_product_quantity(request):
+    """
+    Updates the POSTed product with a new quantity.
+    If the user changes the quantity to 0, remove the product from all user's carts
+    """
     if request.user.is_authenticated:
         try:
             data = JSONParser().parse(request)
@@ -103,6 +125,9 @@ def update_product_quantity(request):
 
 @api_view(['POST'])
 def remove_product_from_cart(request):
+    """
+    Remove the POSTed product from the authed user's cart
+    """
     user = request.user
     if user.is_authenticated:
         try:
@@ -115,6 +140,10 @@ def remove_product_from_cart(request):
 
 @api_view(['POST'])
 def checkout(request):
+    """
+    Checkout the user by subtracting the quantity of all their cart products by 1
+    Clear the users cart
+    """
     user = request.user
     if user.is_authenticated:
         try:

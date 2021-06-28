@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button, Card, Form, Modal, FormControl } from 'react-bootstrap'
 import { VscEdit } from 'react-icons/vsc'
 import { updateProductQuantity } from '../Requests'
 
+/**
+ * This component takes a product and renders the data as an inventory item.
+ * @param product - the product to render the card for
+ */
 export default function InventoryItem({ product }) {
   const [modalShow, setModalShow] = useState(false)
   const [quantity, setQuantity] = useState(product.quantity)
   const [ogQuantity, setOgQuantity] = useState(product.quantity)
 
+  // api call to update the product's quantity
   const handleQuantityChange = async (id, newQuantity) => {
     try {
       await updateProductQuantity(id, newQuantity)

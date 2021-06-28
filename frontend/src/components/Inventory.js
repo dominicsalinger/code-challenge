@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { getMyShopData } from '../Requests'
 import InventoryItem from './InventoryItem'
 
+/**
+ * This partial view renders the user's inventory.
+ *
+ * @param existingProducts - This prop is updated with the results of the AddProduct form to avoid having to re-query for inventory
+ */
 export default function Inventory({ existingProducts }) {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
     let isMounted = true
     async function getProducts() {
-      try {
-        const response = await getMyShopData()
-        if (isMounted) {
-          setProducts(response.data)
-        }
-      } catch (error) {
-        console.log(error)
+      const response = await getMyShopData()
+      if (isMounted) {
+        setProducts(response.data)
       }
     }
     getProducts()

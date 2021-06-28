@@ -1,11 +1,8 @@
 .nav-link {
   text-decoration: none;
-  color: white !important;
+  color: black !important;
 }
 
-.nav-bar {
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
+.navbar-toggler-icon {
+  color: white !important;
 }
