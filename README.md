@@ -59,3 +59,7 @@ Just a couple of custom forms in React can get unwieldy. Post-MVP I would includ
 ### Normalize REST routes and responses
 
 A side effect of prototyping the frontend and backend at the same time is that I didn't stick to good naming conventions for the API routes or their responses. I would normalize the routes to adhere to RESTful conventions and standardize the responses on success and error.
+
+### Image Uploads
+
+I'm using [picsum](https://picsum.photos/) to generate photos, but in a final product I would use AWS S3 to store images. This would require a small migration to allow the S3 url to be stored on the product model.
