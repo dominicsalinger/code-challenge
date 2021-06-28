@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://shopfront-dev.us-west-2.elasticbeanstalk.com'
+const baseUrl = 'https://codechallenge.net'
 // const baseUrl = 'http://127.0.0.1:8000'
 
 const createProduct = async (name, description, price, quantity) => {
